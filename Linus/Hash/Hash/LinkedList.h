@@ -7,7 +7,7 @@ template <typename T>
 class Node {
 public:
 	T Data;
-	Node<T>* Next;
+	Node* Next;
 
 	Node<T>(T value) {
 		Data = value;
@@ -25,8 +25,6 @@ public:
 	Node<T>* Tail;
 	
 	LinkedList() {
-		// Head = new Node<T>();
-		// Tail = new Node<T>();
 		Head = nullptr;
 		Tail = nullptr;
 		Head = Tail;
@@ -47,11 +45,6 @@ public:
 			Tail->Next = newNode;
 			Tail = newNode;
 		}
-		// Node<T>* newNode = new Node<T>;
-		// newNode->Data = value;
-		// newNode->next = NULL;
-		// Tail->next = newNode;
-		// Tail = newNode;
 	}
 
 	void remove(int index) {
@@ -114,7 +107,6 @@ public:
 
 		// Connects new node with the node temp points to
 		node1->Next = temp;
-		//temp->Prev = node1;
 
 		// Connects the new node with the node PrevNode points to
 		//node1->Prev = PrevNode;

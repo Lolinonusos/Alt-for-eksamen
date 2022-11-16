@@ -7,16 +7,14 @@
 template<typename T>
 class HashTable {
 public:
+	
 	int tableLength = 0; // Total amount of linked list we will allow
 
-	LinkedList<T>* array;
+	std::vector<LinkedList<T>> array;
 	
 	HashTable(int value) {
 		tableLength = value;
-		if (tableLength <= 1) {
-			tableLength = 13;
-		}
-		array = new LinkedList<int>[tableLength];
+		//std::vector
 	}
 
 
@@ -26,7 +24,7 @@ public:
 		unsigned int hashValue = 0;
 
 		for (int i = 0; i < key; i++) {
-			hashValue = key;
+			hashValue += key;
 		}
 
 		return hashValue % tableLength;
@@ -46,7 +44,7 @@ public:
 		}
 	}
 
-	
+	// void search?
 	
 	std::vector<LinkedList<int>> bucketList; // Vector holding different linked lists
 

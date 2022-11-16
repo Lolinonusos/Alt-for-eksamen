@@ -1,4 +1,5 @@
 #pragma once
+#include <list>
 #include <vector>
 
 
@@ -10,39 +11,44 @@ class Vertex; // forward declaration
 class Edge {
 public:
 
-	// Pointers defining which vertices are connected
-	Vertex* V; // Start vertex
-	Vertex* W; // end vertex
+	int dest; // index of destination vertex. Only this is needed as the source vertex is implicit
+	int weight; // Distance of this edge
 
-	// Cost of travelling between said vertices
-	int weigth = 0;
-
-	// Create an edge between two vertices
-	Edge(Vertex* v, Vertex* w) {
-		V = v;
-		W = w;
-		
+	Edge(int d, int w) {
+		dest = d;
+		weight = w;
 	}
 };
 
 
 // Vertex is a point.
 // It can connected to another Vertex by an Edge
+template <class Data>
 class Vertex {
 public:
 
-	
-	std::vector<Edge> edgeList;
+	Data data; // This could be whatever. Maybe a name or something, but I do not care.
+	std::vector<Edge> edgeList; // This is the adjacency list
 
+	std::list<Edge> adj;
+	
+	Vertex(Data input) {
+		data = input;
+		
+	}
+
+	
 	bool visited = false;
 	
 };
 
 
 // Graph is the map, a collection of Vertices and Edges
+template <class Data>
 class Graph {
 public:
-	std::vector<Vertex*> verts;
+	
+	std::vector<Vertex> verts;
 	
 	int distance = 0;
 
@@ -53,6 +59,8 @@ public:
 		previous = nullptr;
 	}
 
+	
+	
 	~Graph() {}
 
 private:
@@ -78,7 +86,7 @@ public:
 	float GetCost() const {
 		float cost{};
 		for (const Edge& e : edges) {
-			cost += e.weigth;
+			cost += e.weight;
 		}
 		return cost;
 	}

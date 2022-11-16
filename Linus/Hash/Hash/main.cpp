@@ -8,8 +8,6 @@
 
 
 int main() {
-
-	LinkedList<int> newLinkedList;
 	
 	int keys[15] = {};
 	
@@ -20,6 +18,9 @@ int main() {
 	}
 	
 	HashTable<int> table(7);
+
+	table.insertItem(96);
+	table.displayHash();
 	
 	int test = table.tableLength;
 	
