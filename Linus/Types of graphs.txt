@@ -1,0 +1,88 @@
+Finite Graph:
+A graph that contains a finite number of vertices and edges.
+
+ex:
+A     E
+ \   /
+  C-D
+ /
+B
+
+
+Infinite graph_
+A graph that has a infinite number of vertices and edges.
+
+ex:
+ | | |
+-O-O-O-
+ | | |
+-O-O-O-
+ | | |
+-O-O-O-
+ | | |
+
+
+Trivial graph:
+A graph that contains only one vertex and no edges.
+
+ex:
+A
+
+
+Simple graph:
+A graph where there are only one edge between a pair of vertices.
+
+ex:
+A-B-C
+  \ /
+   D
+
+A-B
+|X|
+C-D
+
+
+Multi graph
+A graph that contains parallel edges, but no loops.
+A vertex pair has parallel edges when there are more than one edge connecting a pair of vertices.
+A loop is when a vertex has an edge that ends on the same vertex.
+
+
+Null graph
+A graph where there are isolated vertices without any edges
+
+ex:
+A	D
+   B
+      C
+
+
+Complete graph
+A graph where each vertex has n-1 connected to the other vertices, where n = the number of edges.
+
+ex:
+A-B
+|X|
+C-D
+
+
+Psueado graph
+A graph with a loop and some parallel edges
+
+
+Regular graph
+All simple graph can be called regular if all vertices are of equal degree.
+All complete graphs are regular graphs, but not all regular graphs are complete graphs.
+
+ex:
+geaometrical shapes like squares, triangles, etc.
+
+
+Bipartite graph:
+
+
+Labeled graph:
+A graph where the edges are labeled with something, be it name, date or weight.
+Can also be called a weighted graph.
+
+Digraph graph
