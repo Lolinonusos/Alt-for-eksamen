@@ -1,62 +1,57 @@
 #pragma once
 #include <list>
 #include <vector>
-
-
-class Vertex; // forward declaration
-
+#define INF 9999999
 
 // An Edge connects two Vertices
 // Weight can be seen as the distance between two Vertices
-class Edge {
-public:
-
-	int dest; // index of destination vertex. Only this is needed as the source vertex is implicit
-	int weight; // Distance of this edge
-
-	Edge(int d, int w) {
-		dest = d;
-		weight = w;
-	}
-};
+// class Edge {
+// public:
+//
+// 	int dest; // index of destination vertex. Only this is needed as the source vertex is implicit
+// 	int weight; // Distance of this edge
+//
+// 	Edge(int d, int w) {
+// 		dest = d;
+// 		weight = w;
+// 	}
+// };
 
 
 // Vertex is a point.
 // It can connected to another Vertex by an Edge
-template <class Data>
 class Vertex {
 public:
 
+	int distance = INF;
 	Data data; // This could be whatever. Maybe a name or something, but I do not care.
-	std::vector<Edge> edgeList; // This is the adjacency list
+	std::vector<Vertex*> edgeList; // This is the adjacency list
 
-	std::list<Edge> adj;
+	//std::list<Edge> adj;
 	
 	Vertex(Data input) {
 		data = input;
 		
 	}
-
 	
 	bool visited = false;
-	
 };
 
 
 // Graph is the map, a collection of Vertices and Edges
-template <class Data>
 class Graph {
 public:
-	
+
+	// Keeps track of current total number of vertices
 	std::vector<Vertex> verts;
 	
-	int distance = 0;
 
-	Vertex* previous;
-	
-	Graph() {
-		distance = 0;
-		previous = nullptr;
+	Vertex* StartVert;
+	Vertex* EndVert;
+	Graph();
+	Graph(int VertsToCreate) {
+		
+		
 	}
 
 	
@@ -68,11 +63,16 @@ private:
 };
 
 
+Graph::Graph() {
+	
+}
+
+
 // Path is the item that will be stored in a priority queue.
 // The path is a sequence of Vertices, storing the total distance between them in each path item
 class Path {
 public:
-	std::vector<Edge> edges;
+	//std::vector<Edge> edges;
 
 	int destination; // Vertex W
 	
@@ -83,14 +83,14 @@ public:
 
 
 	
-	float GetCost() const {
-		float cost{};
-		for (const Edge& e : edges) {
-			cost += e.weight;
-		}
-		return cost;
-	}
-	bool operator < (const Path& otherPath) const {
-		return GetCost() < otherPath.GetCost();
-	}
+	// float GetCost() const {
+	// 	float cost{};
+	// 	//for (const Edge& e : edges) {
+	// 		cost += e.weight;
+	// 	}
+	// 	return cost;
+	// }
+	// bool operator < (const Path& otherPath) const {
+	// 	return GetCost() < otherPath.GetCost();
+	// }
 };
