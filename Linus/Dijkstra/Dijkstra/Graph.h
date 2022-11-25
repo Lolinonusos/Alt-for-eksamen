@@ -24,15 +24,12 @@ class Vertex {
 public:
 
 	int distance = INF;
-	Data data; // This could be whatever. Maybe a name or something, but I do not care.
+	int data; // This could be whatever. Maybe a name or something, but I do not care.
 	std::vector<Vertex*> edgeList; // This is the adjacency list
 
 	//std::list<Edge> adj;
 	
-	Vertex(Data input) {
-		data = input;
-		
-	}
+	Vertex() {}
 	
 	bool visited = false;
 };
@@ -43,15 +40,18 @@ class Graph {
 public:
 
 	// Keeps track of current total number of vertices
-	std::vector<Vertex> verts;
-	
+	std::vector<Vertex*> verts;
 
 	Vertex* StartVert;
 	Vertex* EndVert;
 	Graph();
 	Graph(int VertsToCreate) {
-		
-		
+		for (int i = 0; i < VertsToCreate; i++) {
+			Vertex* newVert = new Vertex;	
+			verts.push_back(newVert);
+		}
+		StartVert = verts.at(0);
+		EndVert = verts.at(VertsToCreate);
 	}
 
 	
@@ -62,10 +62,6 @@ private:
 	
 };
 
-
-Graph::Graph() {
-	
-}
 
 
 // Path is the item that will be stored in a priority queue.
