@@ -3,6 +3,8 @@
 
 #include "Graph.h"
 
+
+
 void swap(Graph* graph, int x, int y) {
 	int temp = x;
 	graph->verts[x]->data = graph->verts[y]->data;
@@ -124,6 +126,16 @@ void dijkstra(Graph* graph) {
 
 	}
 	// Print final path
+	if (currentVert == graph->EndVert) {
+		while (currentVert->prevVert != nullptr) {
+			graph->finalPath.push_back(currentVert);
+		
+		}
+		std::cout << "The final path is:" << std::endl;
+		for (int i = graph->finalPath.size(); i > 0; i--) {
+			std::cout << graph->finalPath[i] << std::endl;
+		}
+	}
 	
 	//std::priority_queue<int> pq;
 }

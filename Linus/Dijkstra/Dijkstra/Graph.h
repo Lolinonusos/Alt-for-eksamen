@@ -34,8 +34,8 @@ public:
 	//  
 	Vertex* prevVert = nullptr;
 	
-	Vertex() {
-		data = 10;
+	Vertex(int input) {
+		data = input;
 	}
 };
 
@@ -54,7 +54,7 @@ public:
 
 		// Create all the vertices
 		for (int i = 0; i < VertsToCreate; i++) {
-			Vertex* newVert = new Vertex;
+			Vertex* newVert = new Vertex(i);
 			verts.push_back(newVert);
 		}
 
@@ -66,6 +66,8 @@ public:
 		EndVert = verts.at(VertsToCreate - 1);
 		EndVert->distance = 0;
 	}
+
+	std::vector<Vertex*> finalPath;
 	
 	~Graph() {}
 
