@@ -23,15 +23,20 @@
 class Vertex {
 public:
 
-	int distance = INF;
+	int distance = INF; // Cost for travelling to this vertex from start
 	int data; // This could be whatever. Maybe a name or something, but I do not care.
-	std::vector<Vertex*> edgeList; // This is the adjacency list
+	bool bVisited = false;
+	
+	// This is the adjacency list
+	// Keeps track of which nodes are connected
+	std::vector<Vertex*> edgeList;
 
-	//std::list<Edge> adj;
+	//  
+	Vertex* prevVert = nullptr;
 	
-	Vertex() {}
-	
-	bool visited = false;
+	Vertex() {
+		data = 10;
+	}
 };
 
 
@@ -46,15 +51,21 @@ public:
 	Vertex* EndVert;
 	Graph();
 	Graph(int VertsToCreate) {
+
+		// Create all the vertices
 		for (int i = 0; i < VertsToCreate; i++) {
-			Vertex* newVert = new Vertex;	
+			Vertex* newVert = new Vertex;
 			verts.push_back(newVert);
 		}
-		StartVert = verts.at(0);
-		EndVert = verts.at(VertsToCreate);
-	}
 
-	
+		// Correct the starting values for start and end vertices
+		StartVert = verts.at(0);
+		StartVert->distance = 0;
+		StartVert->bVisited = true;
+		
+		EndVert = verts.at(VertsToCreate - 1);
+		EndVert->distance = 0;
+	}
 	
 	~Graph() {}
 
