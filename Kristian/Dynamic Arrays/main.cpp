@@ -35,7 +35,7 @@ do
 	PrintArray();
 		std::cout << "Please select your option: " << std::endl;
 		std::cout << "1: Add to array " << std::endl;
-		std::cout << "2: Delete from array " << std::endl;
+		std::cout << "2: ????Delete from array " << std::endl;
 		std::cout << "3: Search in array " << std::endl;
 		std::cout << "4: Sort array " << std::endl;
 
