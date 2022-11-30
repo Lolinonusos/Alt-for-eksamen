@@ -4,34 +4,52 @@
 #include "Graph.h"
 
 
-
-void swap(Graph* graph, int x, int y) {
-	int temp = x;
-	graph->verts[x]->data = graph->verts[y]->data;
-	graph->verts[y]->data = graph->verts[temp]->data;
+template<class FirstVal, class SecondVal>
+void swap(FirstVal *x, SecondVal *y) {
+	FirstVal temp = *x;
+	*x = *y;
+	*y = temp;
 }
 
-void selectionSort(Graph* graph) {
+
+// Currently only sort vectors
+void selectionSort(std::vector<Vertex*> List) {
+
+	int listSize = List.size();
+	for (int i = 0; i < listSize; i++) {
+		std::cout << List[i]->distFromStart << std::endl;
+	}
 
 	// Traverse the whole array
-	for(int i = 0; i < 10; i++) {
+	for(int i = 0; i < listSize; i++) {
 		int lowestValueIndex = i;
 		int lowestValue = 999;
 		
 		// Traverse from last sorted position
-		for (int j = i; j < 10; j++) {
-			if (lowestValue > graph->verts[i]->data) {
-				lowestValue = graph->verts[i]->data;
+		for (int j = i + 1; j < listSize; j++) {
+			if (List[j]->distFromStart < List[lowestValueIndex]->distFromStart) {
+				lowestValueIndex = j;
 			}
 		}
+
 		// Will take in current indexes
 		// where x is the array index poited on by the i for-loop
 		// and y is the current lowest value found by the j for-loop
 		// These two will be swapped using the swap function
-		swap(graph, i, lowestValueIndex);
+		if (lowestValueIndex != i) {
+			std::cout << "Swapping " << std::endl;
+			swap(&List[lowestValueIndex], &List[i]);
+
+		}
+	}
+
+	std::cout << "Sorted: " << std::endl;
+	for (int i = 0; i < listSize; i++) {
+		std::cout << List[i]->distFromStart << std::endl;
 	}
 }
 
+// Setup connections between vertices
 void edgeSetup(Graph* graph) {
 
 	int vertArrSize = graph->verts.size();
@@ -58,7 +76,7 @@ void edgeSetup(Graph* graph) {
 }
 
 // Find if some vertices are not connected
-bool findClusters(Graph* graph) {
+void findClusters(Graph* graph) {
 	
 	std::vector<Vertex*> clusterArray;
 
@@ -73,13 +91,14 @@ bool findClusters(Graph* graph) {
 			//int verticesFound = 1;
 
 			// Find if we have separate clusters or not
-			for (int i = 0; i < clusterArray.size(); i++) {
-				for (int j = 0; j < clusterArray.at(i)->edgeList.size(); i++) {
-					if (clusterArray[i]->edgeList[j] == nullptr) {
-						clusterArray.push_back(clusterArray[i]->edgeList[j]);
-					}
+		for (int i = 0; i < clusterArray.size(); i++) {
+			int clArrayAt = clusterArray.at(i)->edgeList.size();
+			for (int j = 0; j < clArrayAt; i++) {
+				if (clusterArray[i]->edgeList[j] == nullptr) {
+					clusterArray.push_back(clusterArray[i]->edgeList[j]);
 				}
 			}
+		}
 		//}
 
 		// If clusterArray is smaller than verts, that means that there are separate
@@ -103,33 +122,53 @@ bool findClusters(Graph* graph) {
 			}
 		}
 		else {
-			return true;
+			allConnected = true;
 		}
 	}
 	// True if there are no separated clusters	
-	return true;
+	return;
 }
+
 
 void dijkstra(Graph* graph) {
 
 	Vertex* currentVert = graph->StartVert;
 
-	while (!graph->EndVert->bVisited) {
+	std::vector<Vertex*> cheapest;
 
+	while (!graph->EndVert->bVisited) {
+		
 		// Check currentvert for connected vertices
 		for (int i = 0; i < currentVert->edgeList.size(); i++) {
 			if (!currentVert->edgeList[i]->bVisited) {
+		
+				float distBetweenVert = currentVert->vertCost + currentVert->edgeList[i]->vertCost;
+
+				float totalDist = distBetweenVert + currentVert->distFromStart;
 				
-			
+				currentVert->edgeList[i]->prevVert = currentVert;
+
+				if (totalDist < currentVert->edgeList[i]->distFromStart) {
+					currentVert->edgeList[i]->distFromStart = totalDist;
+				}
+				cheapest.push_back(currentVert->edgeList[i]);
 			}
 		}
+		// Sort 
 
+		if (cheapest.at(0))
+		{
+			selectionSort(cheapest);
+			currentVert = cheapest[0];
+		}
+		currentVert->bVisited = true;
 	}
 	// Print final path
 	if (currentVert == graph->EndVert) {
 		while (currentVert->prevVert != nullptr) {
+			std::cout << "Help, am stuck" << std::endl;
 			graph->finalPath.push_back(currentVert);
-		
+			currentVert = currentVert->prevVert;
 		}
 		std::cout << "The final path is:" << std::endl;
 		for (int i = graph->finalPath.size(); i > 0; i--) {
@@ -139,7 +178,6 @@ void dijkstra(Graph* graph) {
 	
 	//std::priority_queue<int> pq;
 }
-
 
 
 int main() {
@@ -154,9 +192,9 @@ int main() {
 	//graph = new Graph<int>;
    	
 	edgeSetup(graph); // Working as intented
-	findClusters(graph);
+	findClusters(graph); // Fix this one later, focus on dijkstra now
 	
-	dijkstra(graph);
+	//dijkstra(graph);
 	
 	return 0;
 }
