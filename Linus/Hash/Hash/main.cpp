@@ -17,16 +17,31 @@ int main() {
 	 	keys[i] = (rand() % 101);
 	}
 	
-	HashTable<char*> table(10);
+	HashTable<char*> charTable(10);
 
 
 
 	char word[] = "skrankel";
 
-	table.insertItem(word);
-	table.displayHash();
+	charTable.insertItem(word);
+	charTable.displayHash();
 	
-	int test = table.tableLength;
+	
+	HashTable<int> intTable(10);
+
+	srand(time(0));
+
+
+	for (int i = 0; i < 20; i++) {
+		
+		int random = rand() % 100;
+		
+		intTable.insertItem(random);
+	}
+
+	intTable.displayHash();
+
+	int test = charTable.tableLength;
 	
 	return 0;
 }

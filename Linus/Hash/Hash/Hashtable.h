@@ -63,7 +63,9 @@ public:
 	void displayHash()
 	{
 		for (int i = 0; i < tableLength; i++) {
+			std::cout << "Values at index " << i << ": " << std::endl;
 			listArray[i]->printList();
+			std::cout << std::endl;
 		}
 	}
 

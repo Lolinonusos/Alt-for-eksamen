@@ -117,9 +117,8 @@ public:
 
 	void printList() {
 		Node<T>* printPtr = Head;
-		std::cout << "Print from Head to Tail" << std::endl;
-		while (printPtr != nullptr) {
-			std::cout << printPtr->Data << std::endl;
+			while (printPtr != nullptr) {
+			std::cout << printPtr->Data << " -> ";
 			printPtr = printPtr->Next;
 		}
 	}
