@@ -27,6 +27,8 @@ int main() {
 	charTable.displayHash();
 	
 	
+	std::cout << "\n\nInteger table coming right up!\n" << std::endl;
+
 	HashTable<int> intTable(10);
 
 	srand(time(0));
@@ -34,12 +36,13 @@ int main() {
 
 	for (int i = 0; i < 20; i++) {
 		
-		int random = rand() % 100;
+		int random = rand() % 50;
 		
 		intTable.insertItem(random);
 	}
 
 	intTable.displayHash();
+	intTable.search(32);
 
 	int test = charTable.tableLength;
 	

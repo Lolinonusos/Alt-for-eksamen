@@ -113,11 +113,23 @@ public:
 		PrevNode->Next = node1;
 	}
 
-	//int amountOfElements();
+	void find(T input) {
+		Node<T>* findPtr = Head;
+		int i = 0;
+		while (findPtr != nullptr) {
+			if (findPtr->Data == input) {
+				std::cout << input << " was found at vertex no. " << i << std::endl;
+				return;
+			}
+			i++;
+			findPtr = findPtr->Next;
+		}
+		std::cout << "User input could not be found" << std::endl;
+	}
 
 	void printList() {
 		Node<T>* printPtr = Head;
-			while (printPtr != nullptr) {
+		while (printPtr != nullptr) {
 			std::cout << printPtr->Data << " -> ";
 			printPtr = printPtr->Next;
 		}

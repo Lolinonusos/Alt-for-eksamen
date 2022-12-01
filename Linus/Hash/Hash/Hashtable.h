@@ -63,14 +63,19 @@ public:
 	void displayHash()
 	{
 		for (int i = 0; i < tableLength; i++) {
-			std::cout << "Values at index " << i << ": " << std::endl;
+			std::cout << "\nValues at index " << i << ": " << std::endl;
 			listArray[i]->printList();
 			std::cout << std::endl;
 		}
 	}
 
-	void search() {
+	void search(T input) {
 
+		int searchAt = hashFunction(input);
+
+		std::cout << "\nSearcing index " << searchAt << "... " << std::endl;
+
+		listArray[searchAt]->find(input);
 	}
 	
 	std::vector<LinkedList<int>> bucketList; // Vector holding different linked lists
