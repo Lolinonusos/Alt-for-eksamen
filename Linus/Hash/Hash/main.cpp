@@ -17,9 +17,13 @@ int main() {
 	 	keys[i] = (rand() % 101);
 	}
 	
-	HashTable<int> table(7);
+	HashTable<char*> table(10);
 
-	table.insertItem(96);
+
+
+	char word[] = "skrankel";
+
+	table.insertItem(word);
 	table.displayHash();
 	
 	int test = table.tableLength;

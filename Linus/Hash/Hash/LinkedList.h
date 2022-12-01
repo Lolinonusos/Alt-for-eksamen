@@ -23,11 +23,11 @@ class LinkedList{
 public:
 	Node<T>* Head;
 	Node<T>* Tail;
+
 	
 	LinkedList() {
 		Head = nullptr;
 		Tail = nullptr;
-		Head = Tail;
 	}
 
 	void addAtEnd(T value) {
@@ -115,7 +115,7 @@ public:
 
 	//int amountOfElements();
 
-	void printHeadToTail() {
+	void printList() {
 		Node<T>* printPtr = Head;
 		std::cout << "Print from Head to Tail" << std::endl;
 		while (printPtr != nullptr) {

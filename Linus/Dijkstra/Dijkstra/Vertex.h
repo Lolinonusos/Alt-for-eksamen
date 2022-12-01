@@ -7,7 +7,7 @@
 class Vertex {
 public:
 
-	int vertCost; // 
+	int vertCost; // Added to distance if MeisMann wants me to
 	int distFromStart = INF; // Cost for travelling to this vertex from start
 	int data; // This could be whatever. Maybe a name or something, but I do not care.
 	bool bVisited = false; // Check for when running path finding algorithms
