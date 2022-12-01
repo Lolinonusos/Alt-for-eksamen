@@ -75,6 +75,10 @@ void edgeSetup(Graph* graph) {
 	}
 }
 
+void fixedEdge(Vertex* From, Vertex* To) {
+
+}
+
 // Find if some vertices are not connected
 void findClusters(Graph* graph) {
 	
@@ -192,6 +196,7 @@ int main() {
 	//graph = new Graph<int>;
    	
 	edgeSetup(graph); // Working as intented
+	fixedEdge(graph->verts[1], graph->verts[2]);
 	findClusters(graph); // Fix this one later, focus on dijkstra now
 	
 	//dijkstra(graph);
