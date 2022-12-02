@@ -24,27 +24,9 @@ public:
 
 
 	// Place an item in correct array location
+	// If not using template, just remove everything related to templatt
 	int hashFunction(T key) {
-
-	//	unsigned int stringLength = 0;
-
-	//	if (key[1] != 0) {
-	//		for (int i = 0; i < key.size(); i++) {
-	//			stringLength ++;
-	//		}
-	//	}
-
-	//	// If key inserted is a string
-	//	if (stringLength > 1) {
-	//		std::cout << "Inserting as array type; string or other" << std::endl;
-	//		return stringLength % tableLength;
-	//	}
-	//	else
-	//	{
-	//		int i = key & tableLength;
-	//		std::cout << "Inserting as non array; singular value" << std::endl;
 		return std::hash<T>()(key) % tableLength;
-	//	}
 	}
 
 	
@@ -57,7 +39,15 @@ public:
 	}
 
 	
-	void deleteItem();
+	// Delete singular
+	void deleteItem(t key) {
+
+		int deleteAt = hashFunction(key);
+
+
+	}
+
+	// Delete list
 
 	
 	void displayHash()

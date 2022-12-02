@@ -3,28 +3,6 @@
 #include "BinaryNode.h"
 
 
-
-
-bool isFullBinaryTree(Node* root) {
-
-	// Checks if the current node is empty (or a leaf)
-	if (root == nullptr) {
-		return true;
-	}
-	
-	// 
-	if (root->left == nullptr && root->right == nullptr) {
-		return true;
-	}
-
-	// 
-	if ((root->left) && (root->right)) {
-
-	}
-	return false;
-}
-
-
 // fixed array
 const int fixedArray[] = { 10,20,8,15,12,17,25 };
 
@@ -38,18 +16,25 @@ int main() {
 		Gongaga->insertIntoTree(fixedArray[i]);
 	}
 
-	int key;
+	int key{};
 
 	std::cout << "Root value: " << Gongaga->getRoot();
 
 	
 	std::cout << "Insert an integer:\n";
-	std::cin >> key;
+	//std::cin >> key;
 	
-	Gongaga->searchForKey(key);
-	
-	
+	key = 3;
 
+	Gongaga->insertIntoTree(key);
+
+	Gongaga->find(8);
+	
+	//Gongaga->findMax();
+	Gongaga->findMin();
+	Gongaga->removeMin();
+	//std::cout << "Root value: " << Gongaga->getRoot();
+	Gongaga->findMin();
 
 	return 0;
 }
