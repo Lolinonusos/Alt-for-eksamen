@@ -22,8 +22,6 @@ public:
 		// very kul code. Does not not do duplicates :^)
 		// Thank Mathis
 		if (tall > this->data) {
-			//return;
-			// Insert node into position
 			if (this->right == nullptr) {
 				this->right = new Node(tall);
 			}
@@ -32,7 +30,6 @@ public:
 			}
 		}
 		else if (tall < this->data) {
-			//insertIntoTree(tall);
 			if (this->left == nullptr) {
 				this->left = new Node(tall);
 
@@ -46,26 +43,38 @@ public:
 	void removeMin() {
 
 		Node* toDelete{ this };
-
+		Node* secondToLast{ nullptr };
 		if (toDelete != nullptr) {
 			while (toDelete->left != nullptr) {
+				secondToLast = toDelete;
 				toDelete = toDelete->left;
 			}
-		}
+		}   
 
 		std::cout << "Minimum is to delete is " << toDelete->data << std::endl;
-
-		delete toDelete->left;
-		delete toDelete->right;
-		//delete toDelete->data;
+		secondToLast->left = nullptr;
 		delete toDelete;
 	}
 
 	// Removes a value from the tree
 	void remove(int tall) {
+		
+		// End early if the chosen node is the root
+		if (tall == this->data) {
+			return;
+		}
+
+		Node* toDelete{ this };
 
 
-
+		
+		if (tall < toDelete->right) {
+			toDelete->right = remove(tall);
+		}
+		else if (tall > toDelete->left) {
+			findPtr = findPtr->right;
+		}
+	
 	}
 
 

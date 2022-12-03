@@ -18,10 +18,10 @@ int main() {
 
 	int key{};
 
-	std::cout << "Root value: " << Gongaga->getRoot();
+	std::cout << "Root value: " << Gongaga->getRoot()->data << std::endl;
 
 	
-	std::cout << "Insert an integer:\n";
+	std::cout << "\nInsert an integer:\n";
 	//std::cin >> key;
 	
 	key = 3;
