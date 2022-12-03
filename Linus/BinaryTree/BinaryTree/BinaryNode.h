@@ -17,28 +17,30 @@ public:
 	// These first functions will be used to manipulate nodes in the tree
 
 	// Inserts a value into the tree
-	void insertIntoTree(int tall) {
+	void insertIntoTree(int key) {
 
 		// very kul code. Does not not do duplicates :^)
-		// Thank Mathis
-		if (tall < this->data) {
+		// Thank for explain Mathis
+		if (key < this->data) {
 			if (this->left == nullptr) {
-				this->left = new Node(tall);
+				this->left = new Node(key);
 			}
 			else {
-				this->left->insertIntoTree(tall);
+				this->left->insertIntoTree(key);
 			}
 		}
-		else if (tall > this->data) {
+		else if (key > this->data) {
 			if (this->right == nullptr) {
-				this->right = new Node(tall);
+				this->right = new Node(key);
 			}
 			else {
-				this->right->insertIntoTree(tall);
+				this->right->insertIntoTree(key);
 			}
 		}
 	}
 
+	// Useless function do not use
+	// Was only made for training
 	void removeMin() {
 
 		Node* toDelete{ this };
@@ -51,27 +53,30 @@ public:
 		}   
 
 		std::cout << "Minimum is to delete is " << toDelete->data << std::endl;
-		secondToLast->left = nullptr;
+		secondToLast->left = nullptr; // Wah, wah dereferencing NULL pointer waaah
 		delete toDelete;
 	}
 
 	// Removes a value from the tree
-	Node* remove(int tall) {
+	Node* remove(int key) {
 		
-		// End early if the tree does not exist
+		// End early if the current node does not exist
 		if (this == nullptr) {
 			return this;
 		}
 
 		// Find the node to be removed
-		if (tall < this->data) {
-			this->left = this->left->remove(tall);
+		// Is important that left/right pointers are connected to the next nodes
+		if (key < this->data) {
+			this->left = this->left->remove(key);
 		}
-		else if (tall > this->data) {
-			this->right = this->right->remove(tall);
+		else if (key > this->data) {
+			this->right = this->right->remove(key);
 		}
 		else {
+			
 			// Node is found and has only one or no child nodes
+			// If no nodes returns a nullpointer for the previous recursion
 			if (this->left == nullptr) {
 				Node* tmp = this->right;
 				delete this;
@@ -84,10 +89,14 @@ public:
 			}
 
 			// Node has two child nodes
+			// Find node with lowest value from the node we are going to delete
 			Node* tmp = findMin(this->right);
 		
+			// Overwrite data in the node we originally wanted to delete
+			// with the data from the node with lowest value
 			this->data = tmp->data;
 
+			// Then delete the node that held the lowest value
 			this->right->remove(tmp->data);
 		}
 		return this;
@@ -95,6 +104,8 @@ public:
 
 
 	// Functions from here are used to find things in the tree
+
+	// Returns the root node
 	Node* getRoot() {
 		return this;
 	}
@@ -153,6 +164,7 @@ public:
 	}
 
 
+	// Here are tree traversal functions
 	void inorder() {
 		if (this != nullptr) {
 			this->left->inorder();
@@ -182,5 +194,4 @@ public:
 			std::cout << this->data << std::endl;
 		}
 	}
-
 };

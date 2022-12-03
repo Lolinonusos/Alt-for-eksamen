@@ -111,7 +111,7 @@ public:
 		PrevNode->Next = node1;
 	}
 
-	void find(T input) {
+	void searchList(T input) {
 		Node<T>* findPtr = Head;
 		int i = 0;
 		while (findPtr != nullptr) {

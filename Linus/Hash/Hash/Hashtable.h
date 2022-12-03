@@ -63,9 +63,9 @@ public:
 
 		int searchAt = hashFunction(input);
 
-		std::cout << "\nSearcing index " << searchAt << "... " << std::endl;
+		std::cout << "\nSearching for " << input << " at index " << searchAt << "... " << std::endl;
 
-		listArray[searchAt]->find(input);
+		listArray[searchAt]->searchList(input);
 	}
 	
 	std::vector<LinkedList<int>> bucketList; // Vector holding different linked lists
