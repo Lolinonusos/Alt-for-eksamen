@@ -7,14 +7,12 @@ template <typename T>
 class Node {
 public:
 	T Data;
-	Node* Next;
+	Node<T>* Next;
 
-	Node<T>(T value) {
+	Node(T value) {
 		Data = value;
 		Next = nullptr;
 	}
-
-	//~Node() {
 };
 
 

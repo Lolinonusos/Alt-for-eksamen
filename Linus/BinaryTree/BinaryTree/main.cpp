@@ -30,11 +30,22 @@ int main() {
 
 	Gongaga->find(8);
 	
-	//Gongaga->findMax();
-	Gongaga->findMin();
-	Gongaga->removeMin();
+	Gongaga->findMax();
+	Gongaga->findMin(Gongaga->getRoot());
+	std::cout << "\nInorder traversal:\n";
+	Gongaga->inorder();
+	//Gongaga->remove(8);
+	//std::cout << "\nInorder with 8 removed:\n";
+	//Gongaga->inorder();
+
+	std::cout << "\nPreorder traversal:\n";
+	Gongaga->preorder();
+
+	std::cout << "\nPostorder traversal:\n";
+	Gongaga->postorder();
+
 	//std::cout << "Root value: " << Gongaga->getRoot();
-	Gongaga->findMin();
+	//Gongaga->findMin();
 
 	return 0;
 }

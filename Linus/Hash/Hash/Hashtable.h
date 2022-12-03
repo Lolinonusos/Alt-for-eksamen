@@ -40,7 +40,7 @@ public:
 
 	
 	// Delete singular
-	void deleteItem(t key) {
+	void deleteItem(T key) {
 
 		int deleteAt = hashFunction(key);
 

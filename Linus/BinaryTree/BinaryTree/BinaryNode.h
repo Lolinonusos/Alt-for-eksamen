@@ -21,21 +21,20 @@ public:
 
 		// very kul code. Does not not do duplicates :^)
 		// Thank Mathis
-		if (tall > this->data) {
+		if (tall < this->data) {
+			if (this->left == nullptr) {
+				this->left = new Node(tall);
+			}
+			else {
+				this->left->insertIntoTree(tall);
+			}
+		}
+		else if (tall > this->data) {
 			if (this->right == nullptr) {
 				this->right = new Node(tall);
 			}
 			else {
 				this->right->insertIntoTree(tall);
-			}
-		}
-		else if (tall < this->data) {
-			if (this->left == nullptr) {
-				this->left = new Node(tall);
-
-			}
-			else {
-				this->left->insertIntoTree(tall);
 			}
 		}
 	}
@@ -57,24 +56,41 @@ public:
 	}
 
 	// Removes a value from the tree
-	void remove(int tall) {
+	Node* remove(int tall) {
 		
-		// End early if the chosen node is the root
-		if (tall == this->data) {
-			return;
+		// End early if the tree does not exist
+		if (this == nullptr) {
+			return this;
 		}
 
-		Node* toDelete{ this };
+		// Find the node to be removed
+		if (tall < this->data) {
+			this->left = this->left->remove(tall);
+		}
+		else if (tall > this->data) {
+			this->right = this->right->remove(tall);
+		}
+		else {
+			// Node is found and has only one or no child nodes
+			if (this->left == nullptr) {
+				Node* tmp = this->right;
+				delete this;
+				return tmp;
+			}
+			else if (this->right == nullptr) {
+				Node* tmp = this->left;
+				delete this;
+				return tmp;
+			}
 
-
+			// Node has two child nodes
+			Node* tmp = findMin(this->right);
 		
-		if (tall < toDelete->right) {
-			toDelete->right = remove(tall);
+			this->data = tmp->data;
+
+			this->right->remove(tmp->data);
 		}
-		else if (tall > toDelete->left) {
-			findPtr = findPtr->right;
-		}
-	
+		return this;
 	}
 
 
@@ -84,9 +100,9 @@ public:
 	}
 
 	// Find node with the lowest value
-	Node* findMin() {
+	Node* findMin(Node* node) {
 
-		Node* minPtr { this };
+		Node* minPtr { node };
 
 		if (minPtr != nullptr) {
 			while (minPtr->left != nullptr) {
@@ -96,7 +112,6 @@ public:
 
 		std::cout << "Minimum is: " << minPtr->data << std::endl;
 		return minPtr;
-
 	}
 
 	// Find node with the biggest value
@@ -138,10 +153,39 @@ public:
 	}
 
 
-	void displayTree() {
+	void inorder() {
 
+		if (this == nullptr) {
+			return;
+		}
+
+		this->left->inorder();
+
+		std::cout << this->data << std::endl;
+
+		this->right->inorder();
 	}
 
+	void preorder() {
 
+		if (this != nullptr) {
+			std::cout << this->data << std::endl;
+
+			this->left->preorder();
+
+			this->right->preorder();
+		}
+	}
+
+	void postorder() {
+
+		if (this != nullptr) {
+			this->left->postorder();
+
+			this->right->postorder();
+
+			std::cout << this->data << std::endl;
+		}
+	}
 
 };
