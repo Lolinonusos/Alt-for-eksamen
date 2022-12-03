@@ -154,20 +154,16 @@ public:
 
 
 	void inorder() {
+		if (this != nullptr) {
+			this->left->inorder();
 
-		if (this == nullptr) {
-			return;
+			std::cout << this->data << std::endl;
+
+			this->right->inorder();
 		}
-
-		this->left->inorder();
-
-		std::cout << this->data << std::endl;
-
-		this->right->inorder();
 	}
 
 	void preorder() {
-
 		if (this != nullptr) {
 			std::cout << this->data << std::endl;
 
@@ -178,7 +174,6 @@ public:
 	}
 
 	void postorder() {
-
 		if (this != nullptr) {
 			this->left->postorder();
 

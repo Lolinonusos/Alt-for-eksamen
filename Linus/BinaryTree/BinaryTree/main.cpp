@@ -47,5 +47,7 @@ int main() {
 	//std::cout << "Root value: " << Gongaga->getRoot();
 	//Gongaga->findMin();
 
+	
+
 	return 0;
 }
