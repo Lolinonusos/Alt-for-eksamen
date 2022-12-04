@@ -14,10 +14,10 @@ public:
 
 	// This is the adjacency list
 	// Keeps track of which nodes are connected
-	std::vector<Vertex*> edgeList;
+	std::vector<class Edge*> edgeList;
 
 	//  
-	Vertex* prevVert = nullptr;
+	
 
 	Vertex(int input) {
 		vertCost = rand() % 10 + 1;

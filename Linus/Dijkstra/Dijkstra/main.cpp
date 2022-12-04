@@ -3,6 +3,8 @@
 
 #include "Graph.h"
 
+#include "Edge.h"
+
 
 template<class FirstVal, class SecondVal>
 void swap(FirstVal *x, SecondVal *y) {
@@ -66,8 +68,11 @@ void edgeSetup(Graph* graph) {
 
 			// Do not connect a vertex to iself
 			if (RandVert != i) {
-				graph->verts[i]->edgeList.push_back(graph->verts[RandVert]); // Connect vertices
-				graph->verts[RandVert]->edgeList.push_back(graph->verts[i]); // Reverse connection
+				Edge* newEdge{ new Edge(graph->verts[RandVert]) };
+				Edge* reverseEdge{ new Edge(graph->verts[i]) };
+
+				graph->verts[i]->edgeList.push_back(newEdge); // Connect vertices
+				graph->verts[RandVert]->edgeList.push_back(reverseEdge); // Reverse connection
 				std::cout << "Connected vertices " << i << " and " << RandVert << std::endl;
 			}
 
@@ -75,7 +80,7 @@ void edgeSetup(Graph* graph) {
 	}
 }
 
-void fixedEdge(Vertex* From, Vertex* To) {
+void fixedEdgeInsert(Vertex* From, Vertex* To) {
 
 }
 
@@ -144,18 +149,18 @@ void dijkstra(Graph* graph) {
 		
 		// Check currentvert for connected vertices
 		for (int i = 0; i < currentVert->edgeList.size(); i++) {
-			if (!currentVert->edgeList[i]->bVisited) {
+			if (!currentVert->edgeList[i]->edgeToVert->bVisited) {
 		
-				float distBetweenVert = currentVert->vertCost + currentVert->edgeList[i]->vertCost;
+				float distBetweenVert = currentVert->vertCost + currentVert->edgeList[i]->edgeToVert->vertCost;
 
 				float totalDist = distBetweenVert + currentVert->distFromStart;
 				
 				currentVert->edgeList[i]->prevVert = currentVert;
 
-				if (totalDist < currentVert->edgeList[i]->distFromStart) {
-					currentVert->edgeList[i]->distFromStart = totalDist;
+				if (totalDist < currentVert->edgeList[i]->edgeToVert->distFromStart) {
+					currentVert->edgeList[i]->edgeToVert->distFromStart = totalDist;
 				}
-				cheapest.push_back(currentVert->edgeList[i]);
+				cheapest.push_back(currentVert->edgeList[i]->edgeToVert);
 			}
 		}
 		// Sort 
@@ -168,17 +173,17 @@ void dijkstra(Graph* graph) {
 		currentVert->bVisited = true;
 	}
 	// Print final path
-	if (currentVert == graph->EndVert) {
-		while (currentVert->prevVert != nullptr) {
-			std::cout << "Help, am stuck" << std::endl;
-			graph->finalPath.push_back(currentVert);
-			currentVert = currentVert->prevVert;
-		}
-		std::cout << "The final path is:" << std::endl;
-		for (int i = graph->finalPath.size(); i > 0; i--) {
-			std::cout << graph->finalPath[i] << std::endl;
-		}
-	}
+	//if (currentVert == graph->EndVert) {
+	//	while (currentVert->prevVert != nullptr) {
+	//		std::cout << "Help, am stuck" << std::endl;
+	//		graph->finalPath.push_back(currentVert);
+	//		currentVert = currentVert->prevVert;
+	//	}
+	//	std::cout << "The final path is:" << std::endl;
+	//	for (int i = graph->finalPath.size(); i > 0; i--) {
+	//		std::cout << graph->finalPath[i] << std::endl;
+	//	}
+	//}
 	
 	//std::priority_queue<int> pq;
 }
@@ -196,7 +201,7 @@ int main() {
 	//graph = new Graph<int>;
    	
 	edgeSetup(graph); // Working as intented
-	fixedEdge(graph->verts[1], graph->verts[2]);
+	fixedEdgeInsert(graph->verts[1], graph->verts[2]);
 	findClusters(graph); // Fix this one later, focus on dijkstra now
 	
 	//dijkstra(graph);

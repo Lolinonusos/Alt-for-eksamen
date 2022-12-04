@@ -53,8 +53,8 @@ public:
 		}   
 
 		std::cout << "Minimum is to delete is " << toDelete->data << std::endl;
-		secondToLast->left = nullptr; // Wah, wah dereferencing NULL pointer waaah
 		delete toDelete;
+		secondToLast->left = nullptr; // Wah, wah dereferencing NULL pointer waaah
 	}
 
 	// Removes a value from the tree
@@ -105,10 +105,12 @@ public:
 
 	// Functions from here are used to find things in the tree
 
+	// USELESS USELESS USELESS!
+	// GONGAGA IS ROOT
 	// Returns the root node
-	Node* getRoot() {
-		return this;
-	}
+	//Node* getRoot() {
+	//	return this;
+	//}
 
 	// Find node with the lowest value
 	Node* findMin(Node* node) {

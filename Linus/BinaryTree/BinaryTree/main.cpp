@@ -18,7 +18,7 @@ int main() {
 
 	int key{};
 
-	std::cout << "Root value: " << Gongaga->getRoot()->data << std::endl;
+	std::cout << "Root value: " << Gongaga->data << std::endl; // GONGAGA IS ROOT
 
 	
 	std::cout << "\nInsert an integer:\n";
@@ -31,7 +31,7 @@ int main() {
 	Gongaga->find(8);
 	
 	Gongaga->findMax();
-	Gongaga->findMin(Gongaga->getRoot());
+	Gongaga->findMin(Gongaga); // GONGAGA IS ROOT
 	std::cout << "\nInorder traversal:\n";
 	Gongaga->inorder();
 	//Gongaga->remove(8);
