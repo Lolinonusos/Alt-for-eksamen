@@ -17,8 +17,11 @@ int main() {
 
 	list->printHeadToTail();
 
-	std::cout << "Removing 25" << std::endl;
-	list->remove(25);
+	//std::cout << "Removing 25" << std::endl;
+	//list->remove(25);
+
+	std::cout << "Sorting" << std::endl;
+	selectionSort(list, list->listLength);
 
 	list->printHeadToTail();
 

@@ -30,8 +30,9 @@ void selectionSort(LinkedList* list, int listSize) {
 			}
 			subLoopPtr = subLoopPtr->next;
 		}
+		swap(mainLoopPtr->data, minPtr->data);
 		
-		//swap();
+		mainLoopPtr = mainLoopPtr->next;
 	}
 }
 
