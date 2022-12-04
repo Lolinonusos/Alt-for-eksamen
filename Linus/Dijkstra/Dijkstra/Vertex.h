@@ -9,7 +9,7 @@ public:
 
 	int vertCost; // Added to distance if MeisMann wants me to
 	int distFromStart = INF; // Cost for travelling to this vertex from start
-	int data; // This could be whatever. Maybe a name or something, but I do not care.
+	int index; // This could be whatever. Maybe a name or something, but I do not care.
 	bool bVisited = false; // Check for when running path finding algorithms
 
 	// This is the adjacency list
@@ -21,6 +21,6 @@ public:
 
 	Vertex(int input) {
 		vertCost = rand() % 10 + 1;
-		data = input;
+		index = input;
 	}
 };

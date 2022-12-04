@@ -3,7 +3,7 @@
 class Edge {
 public:
 
-	int distance;
+	int distance{};
 
 	class Vertex* edgeToVert;
 

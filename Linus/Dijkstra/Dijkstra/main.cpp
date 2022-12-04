@@ -82,61 +82,69 @@ void edgeSetup(Graph* graph) {
 
 void fixedEdgeInsert(Vertex* From, Vertex* To) {
 
+	Edge* newEdge{ new Edge(To) };
+	Edge* reverseEdge{ new Edge(From) };
+
+	From->edgeList.push_back(newEdge);
+	To->edgeList.push_back(reverseEdge);
+
+	std::cout << "Connected vertices " << From->index << " and " << To->index << std::endl;
+
 }
 
 // Find if some vertices are not connected
-void findClusters(Graph* graph) {
-	
-	std::vector<Vertex*> clusterArray;
-
-	bool allConnected = false;
-	
-	clusterArray.push_back(graph->verts.at(0)); // will use vert at 0 because that will make it simple
-		
-	while (!allConnected) {
-	
-		//while (clusterArray.size() != graph->verts.size()){
-			// Will use this to find if there are different clusters
-			//int verticesFound = 1;
-
-			// Find if we have separate clusters or not
-		for (int i = 0; i < clusterArray.size(); i++) {
-			int clArrayAt = clusterArray.at(i)->edgeList.size();
-			for (int j = 0; j < clArrayAt; i++) {
-				if (clusterArray[i]->edgeList[j] == nullptr) {
-					clusterArray.push_back(clusterArray[i]->edgeList[j]);
-				}
-			}
-		}
-		//}
-
-		// If clusterArray is smaller than verts, that means that there are separate
-		// clusters of vertices. During this step we will connect the clusters.
-		if(clusterArray.size() != graph->verts.size()) {
-			bool findDisconnected = false;
-			while (!findDisconnected) {
-
-				for (int i = 0; i < graph->verts.size(); i++) {
-					for(int j = i; j < graph->verts.size(); j++) {
-						
-						if (clusterArray[i] == graph->verts[j]) {
-							findDisconnected = false;
-							break;
-						}
-						else {
-							
-						}
-					}
-				}
-			}
-		}
-		else {
-			allConnected = true;
-		}
-	}
-	// True if there are no separated clusters	
-	return;
-}
+//void findClusters(Graph* graph) {
+//	
+//	std::vector<Vertex*> clusterArray;
+//
+//	bool allConnected = false;
+//	
+//	clusterArray.push_back(graph->verts.at(0)); // will use vert at 0 because that will make it simple
+//		
+//	while (!allConnected) {
+//	
+//		//while (clusterArray.size() != graph->verts.size()){
+//			// Will use this to find if there are different clusters
+//			//int verticesFound = 1;
+//
+//			// Find if we have separate clusters or not
+//		for (int i = 0; i < clusterArray.size(); i++) {
+//			int clArrayAt = clusterArray.at(i)->edgeList.size();
+//			for (int j = 0; j < clArrayAt; i++) {
+//				if (clusterArray[i]->edgeList[j]->edgeToVert == nullptr) {
+//					clusterArray.push_back(clusterArray[i]->edgeList[j]->edgeToVert);
+//				}
+//			}
+//		}
+//		//}
+//
+//		// If clusterArray is smaller than verts, that means that there are separate
+//		// clusters of vertices. During this step we will connect the clusters.
+//		if(clusterArray.size() != graph->verts.size()) {
+//			bool findDisconnected = false;
+//			while (!findDisconnected) {
+//
+//				for (int i = 0; i < graph->verts.size(); i++) {
+//					for(int j = i; j < graph->verts.size(); j++) {
+//						
+//						if (clusterArray[i] == graph->verts[j]) {
+//							findDisconnected = false;
+//							break;
+//						}
+//						else {
+//							
+//						}
+//					}
+//				}
+//			}
+//		}
+//		else {
+//			allConnected = true;
+//		}
+//	}
+//	// True if there are no separated clusters	
+//	return;
+//}
 
 
 void dijkstra(Graph* graph) {
@@ -200,9 +208,9 @@ int main() {
 
 	//graph = new Graph<int>;
    	
-	edgeSetup(graph); // Working as intented
+	//edgeSetup(graph); // Working as intented
 	fixedEdgeInsert(graph->verts[1], graph->verts[2]);
-	findClusters(graph); // Fix this one later, focus on dijkstra now
+	//findClusters(graph); // Fix this one later, focus on dijkstra now
 	
 	//dijkstra(graph);
 	
