@@ -4,10 +4,17 @@
 
 // Probably smart to pass in array if dealing with those
 
-void swap(int& x, int& y) {
-	int tmp{ x };
-	x = y;
-	y = tmp;
+void dataSwap(int& x, int& y) {
+	int tmp{ y };
+	y = x;
+	x = tmp;
+}
+
+Node* nodeSwap(Node* x, Node* y) {
+	Node* tmp{ y->next };
+	y->next = x;
+	x->next = tmp;
+	return y;
 }
 
 void selectionSort(LinkedList* list, int listSize) {
@@ -30,16 +37,60 @@ void selectionSort(LinkedList* list, int listSize) {
 			}
 			subLoopPtr = subLoopPtr->next;
 		}
-		swap(mainLoopPtr->data, minPtr->data);
+		dataSwap(mainLoopPtr->data, minPtr->data);
 		
 		mainLoopPtr = mainLoopPtr->next;
+
+	
 	}
 }
 
 void bubbleSort(LinkedList* list, int listSize) {
 
+	Node* headPtr{ list->head };
+	Node* firstPtr{ list->head };
+	Node* secondPtr{ nullptr };
+
+	bool swapped = false;
+
+	//for (int i{ 0 }; i < listSize; i++) {
+	while (firstPtr != nullptr) {
+
+		secondPtr = firstPtr->next;
+
+		//headPtr = list->head;
+		swapped = false;
+		
+		//for (int j{ 0 }; j < listSize - i - 1; j++) {
+		while (secondPtr != nullptr) {
+
+			std::cout << firstPtr->data << std::endl;
+			std::cout << secondPtr->data << std::endl;
+
+
+			if (firstPtr->data > secondPtr->data) {
+				std::cout << "Bubbble Swap" << std::endl;
+				//headPtr = nodeSwap(firstPtr, secondPtr);
+				dataSwap(firstPtr->data, secondPtr->data);
+				//swapped = true;
+			}
+			secondPtr = secondPtr->next;
+			//headPtr = headPtr->next;
+		}
+			firstPtr = firstPtr->next;
+
+	/*	
+		if (swapped == false) {
+			break;
+		}*/
+	}
 }
 
-void quickSort(LinkedList* list, int listSize) {
+
+void partition(LinkedList*, int noll, int listSize) {
+
+}
+
+void quickSort(LinkedList* list, int noll, int listSize) {
 
 }

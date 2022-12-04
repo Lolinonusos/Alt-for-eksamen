@@ -21,7 +21,9 @@ int main() {
 	//list->remove(25);
 
 	std::cout << "Sorting" << std::endl;
-	selectionSort(list, list->listLength);
+	//selectionSort(list, list->listLength);
+	bubbleSort(list, list->listLength - 1);
+	quickSort(list, 0, list->listLength - 1);
 
 	list->printHeadToTail();
 
