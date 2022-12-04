@@ -41,7 +41,6 @@ void selectionSort(std::vector<Vertex*> List) {
 		if (lowestValueIndex != i) {
 			std::cout << "Swapping " << std::endl;
 			swap(&List[lowestValueIndex], &List[i]);
-
 		}
 	}
 
