@@ -10,6 +10,8 @@ using namespace std;
 // FIFO: First In First Out		||		FCFS: First Come First Served
 //
 
+/*
+
 void printQueue(queue<int> queue)
 {
 	while (!queue.empty())
@@ -36,7 +38,7 @@ int main()
 	printQueue(myQueue);
 }
 
-
+*/
 
 
 

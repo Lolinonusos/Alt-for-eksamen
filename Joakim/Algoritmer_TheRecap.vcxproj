@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="Tree Data Structure.cpp" />
     <ClCompile Include="Bubble sort.cpp" />
@@ -134,7 +135,6 @@
     <ClCompile Include="Eksamen-oppgaver.cpp" />
     <ClCompile Include="Heap Sort.cpp" />
     <ClCompile Include="Linked lists.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="Merge sort.cpp" />
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="Selection sort.cpp" />
