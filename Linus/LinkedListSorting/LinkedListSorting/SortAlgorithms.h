@@ -1,13 +1,17 @@
 #pragma once
 
-void selectionSort() {
+#include "LinkedList.h"
+
+// Probably smart to pass in array if dealing with those
+
+void selectionSort(LinkedList* list, int listSize) {
 
 }
 
-void bubbleSort() {
+void bubbleSort(LinkedList* list, int listSize) {
 
 }
 
-void quickSort() {
+void quickSort(LinkedList* list, int listSize) {
 
 }

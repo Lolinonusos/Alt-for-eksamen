@@ -3,11 +3,13 @@
 #include "Node.h"
 
 class LinkedList {
+public:
+	
+	int listLength{ 0 };
 
 	Node* head{nullptr};
 	Node* tail{nullptr};
 
-public:
 
 	LinkedList() {
 		head = tail;
@@ -25,12 +27,16 @@ public:
 			tail->next = newNode;
 			tail = newNode;
 		}
+		listLength += 1;
 	}
 
-	void insertAt(int input, int index) {
+	// 
+	void sortedInsert(int input) {
 
+		listLength += 1;
 	}
 
+	// Removes by key value, not index
 	void remove(int key) {
 
 		Node* toDelete{ head };
