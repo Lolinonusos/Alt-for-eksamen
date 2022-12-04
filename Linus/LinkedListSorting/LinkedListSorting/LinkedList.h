@@ -59,6 +59,7 @@ public:
 			secondToLast->next = toDelete->next;
 			delete toDelete;
 		}
+		listLength -= 1;
 	}
 
 	void printHeadToTail() {
