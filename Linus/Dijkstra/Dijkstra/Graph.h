@@ -26,6 +26,8 @@ public:
 		}
 
 		// Correct the starting values for start and end vertices
+		// For the algorithm vert 0 will always be the start vert
+		// and the final vert created will aways be the end vert
 		StartVert = verts.at(0);
 		StartVert->distFromStart = 0;
 		StartVert->bVisited = true;
