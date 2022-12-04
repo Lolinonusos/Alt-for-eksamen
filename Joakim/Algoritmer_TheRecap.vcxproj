@@ -127,8 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="A star _ GeeksForGeeks.cpp" />
+    <ClCompile Include="Dijkstra_GeeksForGeeks.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Stack.cpp" />
+    <ClCompile Include="Templates.cpp" />
     <ClCompile Include="Tree Data Structure.cpp" />
     <ClCompile Include="Bubble sort.cpp" />
     <ClCompile Include="Comments_and_thoughts.cpp" />
