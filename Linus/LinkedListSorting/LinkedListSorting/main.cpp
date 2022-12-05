@@ -22,8 +22,8 @@ int main() {
 
 	std::cout << "Sorting" << std::endl;
 	//selectionSort(list, list->listLength);
-	bubbleSort(list, list->listLength - 1);
-	quickSort(list, 0, list->listLength - 1);
+	//bubbleSort(list);
+	quickSort(list, list->head, list->tail);
 
 	list->printHeadToTail();
 

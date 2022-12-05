@@ -4,18 +4,18 @@
 
 // Probably smart to pass in array if dealing with those
 
-void dataSwap(int& x, int& y) {
+void swap(int& x, int& y) {
 	int tmp{ y };
 	y = x;
 	x = tmp;
 }
 
-Node* nodeSwap(Node* x, Node* y) {
-	Node* tmp{ y->next };
-	y->next = x;
-	x->next = tmp;
-	return y;
-}
+//Node* nodeSwap(Node* x, Node* y) {
+//	Node* tmp{ y->next };
+//	y->next = x;
+//	x->next = tmp;
+//	return y;
+//}
 
 void selectionSort(LinkedList* list, int listSize) {
 
@@ -37,7 +37,7 @@ void selectionSort(LinkedList* list, int listSize) {
 			}
 			subLoopPtr = subLoopPtr->next;
 		}
-		dataSwap(mainLoopPtr->data, minPtr->data);
+		swap(mainLoopPtr->data, minPtr->data);
 		
 		mainLoopPtr = mainLoopPtr->next;
 
@@ -45,52 +45,73 @@ void selectionSort(LinkedList* list, int listSize) {
 	}
 }
 
-void bubbleSort(LinkedList* list, int listSize) {
 
-	Node* headPtr{ list->head };
-	Node* firstPtr{ list->head };
-	Node* secondPtr{ nullptr };
+void bubbleSort(LinkedList* list) {
 
-	bool swapped = false;
+	Node* outerWhilePtr{ list->head }; // 
+	Node* innerWhilePtr{ nullptr };
 
-	//for (int i{ 0 }; i < listSize; i++) {
-	while (firstPtr != nullptr) {
+	while (outerWhilePtr != nullptr) {
 
-		secondPtr = firstPtr->next;
+		innerWhilePtr = outerWhilePtr->next;
 
-		//headPtr = list->head;
-		swapped = false;
-		
-		//for (int j{ 0 }; j < listSize - i - 1; j++) {
-		while (secondPtr != nullptr) {
+		while (innerWhilePtr != nullptr) {
 
-			std::cout << firstPtr->data << std::endl;
-			std::cout << secondPtr->data << std::endl;
+			//std::cout << outerWhilePtr->data << std::endl;
+			//std::cout << innerWhilePtr->data << std::endl;
 
-
-			if (firstPtr->data > secondPtr->data) {
-				std::cout << "Bubbble Swap" << std::endl;
-				//headPtr = nodeSwap(firstPtr, secondPtr);
-				dataSwap(firstPtr->data, secondPtr->data);
-				//swapped = true;
+			if (outerWhilePtr->data > innerWhilePtr->data) {
+				//std::cout << "Bubbble Swap" << std::endl;
+				swap(outerWhilePtr->data, innerWhilePtr->data);
 			}
-			secondPtr = secondPtr->next;
-			//headPtr = headPtr->next;
+			innerWhilePtr = innerWhilePtr->next;
 		}
-			firstPtr = firstPtr->next;
-
-	/*	
-		if (swapped == false) {
-			break;
-		}*/
+		outerWhilePtr = outerWhilePtr->next;
 	}
 }
 
 
-void partition(LinkedList*, int noll, int listSize) {
+Node* partition(Node* start, Node* end) {
+	if (start == end || start == nullptr || end == nullptr) {
+		return start;
+	}
 
+	Node* pivotPrev = start;
+	Node* current = start;
+	int pivInt = end->data;
+
+	while (start != end) {
+		if (start->data < pivInt) {
+			pivotPrev = current;
+			int tmp = current->data;
+			current->data = start->data;
+			start->data = tmp;
+			current = current->next;
+		}
+		start = start->next;
+	}
+
+	int tmp = current->data;
+	current->data = pivInt;
+	end->data = tmp;
+
+	return pivotPrev;
 }
 
-void quickSort(LinkedList* list, int noll, int listSize) {
+void quickSort(LinkedList* list, Node* start, Node* end) {
 
+	if (start == nullptr || start == end || start == end->next) {
+		return;
+	}
+
+	Node* pivot = partition(start, end);
+	quickSort(list, start, pivot);
+
+	if (pivot != nullptr && pivot == start) {
+		quickSort(list, pivot->next, end);
+	}
+
+	else if (pivot != nullptr && pivot->next != nullptr) {
+		quickSort(list, pivot->next->next, end);
+	}
 }
